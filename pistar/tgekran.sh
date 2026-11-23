@@ -54,36 +54,48 @@ operator_gonder() {  # $1 = cagri isareti (ham)
   gonder "MMDVM.opulke.txt=\"${ulke}\""
 }
 
-ESKI=""; SAYAC=0; LOG=""; POS=0; SONCALL=""
+tg_oku() {  # /etc/ysf2dmr'den StartupDstId (harici komut calistirmadan)
+  local l
+  while IFS= read -r l; do
+    case "$l" in StartupDstId=*) l=${l#StartupDstId=}; echo "${l//[^0-9]/}"; return ;; esac
+  done < "$CONF"
+}
+
+bugun_log() { TZ=UTC printf -v BUGUN '%(%Y-%m-%d)T' -1; echo "$LOGDIR/MMDVM-$BUGUN.log"; }
+
+TPID=""
+log_ac() {  # gunun MMDVM kaydini 'tail -F' ile fd 3'e bagla
+  [ -n "$TPID" ] && kill "$TPID" 2>/dev/null
+  LOG=$(bugun_log)
+  exec 3< <(exec tail -F -n0 "$LOG" 2>/dev/null)
+  TPID=$!
+}
+trap '[ -n "$TPID" ] && kill $TPID 2>/dev/null' EXIT
+
+ESKI=""; SONTG=0; SONCALL=""
+log_ac
 while true; do
-  # --- 1) TG: her 2 sn kontrol, degisince hemen, ayrica ~10 sn'de bir tekrar ---
-  if [ $((SAYAC % 4)) -eq 0 ]; then
-    TG=$(sed -n 's/^StartupDstId=//p' "$CONF" | tr -cd '0-9')
+  # 2 sn boyunca yeni kayit satiri bekle (islemci harcamadan)
+  if IFS= read -r -t 2 -u 3 SATIR; then
+    case "$SATIR" in
+      *"YSF, received RF header from "*|*"YSF, received network data from "*)
+        CALL=${SATIR#*from }; CALL=${CALL%% *}
+        if [ -n "$CALL" ] && [ "$CALL" != "$SONCALL" ]; then operator_gonder "$CALL"; SONCALL="$CALL"; fi ;;
+      *"end of transmission"*|*"watchdog has expired"*|*"Mode set to Idle"*)
+        SONCALL="" ;;
+    esac
+  fi
+  printf -v SIMDI '%(%s)T' -1
+  if [ $((SIMDI - SONTG)) -ge 2 ]; then
+    SONTG=$SIMDI
+    TG=$(tg_oku)
     METIN="TG $TG $(ad_bul "$TG")"; METIN="${METIN% }"
-    if [ "$METIN" != "$ESKI" ] || [ $SAYAC -ge 20 ]; then
+    if [ "$METIN" != "$ESKI" ] || [ $((SIMDI - ${SONGONDER:-0})) -ge 10 ]; then
       gonder "MMDVM.tgad.txt=\"${METIN}\""
       gonder "MMDVM.tgno.txt=\"${TG}\""
-      ESKI="$METIN"; SAYAC=0
+      ESKI="$METIN"; SONGONDER=$SIMDI
     fi
+    # gun degisti mi (kayit dosyasi yeni ada gecer)
+    [ "$(bugun_log)" != "$LOG" ] && log_ac
   fi
-  SAYAC=$((SAYAC+1))
-
-  # --- 2) Operator: MMDVMHost gunluk kaydindaki yeni YSF satirlari ---
-  YENI=$(ls -t "$LOGDIR"/MMDVM-*.log 2>/dev/null | head -1)
-  if [ -n "$YENI" ]; then
-    if [ "$YENI" != "$LOG" ]; then LOG="$YENI"; POS=$(stat -c %s "$LOG"); fi
-    BOY=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
-    [ "$BOY" -lt "$POS" ] && POS=0
-    if [ "$BOY" -gt "$POS" ]; then
-      CALL=$(tail -c +$((POS+1)) "$LOG" | head -c $((BOY-POS)) \
-             | sed -n 's/.*YSF, received \(RF header\|network data\) from \([^ ]*\).*/\2/p' | tail -1)
-      POS=$BOY
-      if [ -n "$CALL" ] && [ "$CALL" != "$SONCALL" ]; then
-        operator_gonder "$CALL"; SONCALL="$CALL"
-      fi
-      # Yayin bitince ayni kisi tekrar konusursa yine gonderilsin
-      [ -z "$CALL" ] && SONCALL=""
-    fi
-  fi
-  sleep 0.5
 done
