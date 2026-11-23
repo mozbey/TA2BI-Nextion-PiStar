@@ -22,6 +22,7 @@ Tasarım: **TA2BI – Murat ÖZ** · [English summary below](#english)
 - **Ekranda aktif TG adı** (YSF2DMR): isteğe bağlı küçük bir Pi servisiyle gelir.
 - **Telefondan TG değiştirme sayfası** (YSF2DMR): isteğe bağlı.
 - Açılışta 2 saniyelik imza ekranı.
+- **Ekrandan parlaklık ayarı:** ana ekranda üstteki **TA2BI** başlığına dokunun, açılan kaydırıcıyla parlaklığı %10–100 arasında ayarlayın. Değer ekranda kalıcı olarak saklanır ve Pi-Star'ın gönderdiği parlaklık komutları bu değeri ezmez. Panel 6 saniye dokunulmazsa kendiliğinden kapanır.
 
 ## Klasörler
 | Klasör | İçerik |
@@ -147,5 +148,6 @@ Dark theme for **Nextion 3.5" 480×320 – Basic NX4832T035 (`tft/TA2BI.tft`) an
 - **Pi-Star:** Display Type `Nextion`, Layout `ON7LDS L2`, Port `modem` (or `/dev/ttyUSB0` with a USB-TTL adapter). If the display is on the modem port, enable `[Transparent Data]` (40094/40095, SendFrameType=1).
 - **Optional:** `pistar/kur2.sh` shows the active YSF2DMR talkgroup name on the display. `pistar/kur.sh` adds a phone page at `/admin/tg.php` for changing the YSF2DMR talkgroup. It uses a sudoers rule limited to one script; review it before installing.
 - **USB-TTL wiring:** 5V→5V, GND→GND, Nextion TX→RXD, Nextion RX→TXD. See [docs/usb-ttl.md](docs/usb-ttl.md). Touch buttons usually only work this way, because modem-port passthrough drops display→host data.
+- On-screen brightness: tap the **TA2BI** header on the main page; the setting is saved on the display and overrides Pi-Star's dim commands.
 - Credits: ON7LDS NextionDriver, G4KLX MMDVMHost, Pi-Star. Flags from flagcdn.com.
 - License: display design **CC BY-NC-ND 4.0** (share as-is with attribution; no modified versions, no commercial use). `pistar/` scripts: MIT.
