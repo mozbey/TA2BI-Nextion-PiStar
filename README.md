@@ -1,6 +1,7 @@
 # TA2BI Nextion – Pi-Star Koyu Tema
 
-**Nextion NX4832T035 (3.5", 480×320)** ekran için Pi-Star / MMDVM hotspot teması.
+**Nextion 3.5" (480×320)** ekranlar için Pi-Star / MMDVM hotspot teması.
+**Basic NX4832T035** ve **Enhanced NX4832K035** modelleri desteklenir.
 DMR, YSF ve YSF2DMR kullanımına göre hazırlandı.
 
 Tasarım: **TA2BI – Murat ÖZ** · [English summary below](#english)
@@ -25,7 +26,8 @@ Tasarım: **TA2BI – Murat ÖZ** · [English summary below](#english)
 ## Klasörler
 | Klasör | İçerik |
 |---|---|
-| `tft/TA2BI.tft` | Ekrana yüklenecek hazır dosya |
+| `tft/TA2BI.tft` | Hazır dosya – **Basic NX4832T035** |
+| `tft/TA2BI_K035.tft` | Hazır dosya – **Enhanced NX4832K035** |
 | `tasarim/` | Arka planları ve bayrakları üreten Python betikleri, resimler |
 | `pistar/` | Pi-Star'a kurulan isteğe bağlı eklentiler |
 | `docs/` | Ekran görüntüleri ve USB-TTL bağlantı rehberi |
@@ -36,12 +38,19 @@ Tasarım: **TA2BI – Murat ÖZ** · [English summary below](#english)
 
 ### 1. Gereksinimler
 - Pi-Star 4.2 veya üstü. Bu tema 4.2.6 ile denendi. NextionDriver (ON7LDS) Pi-Star ile birlikte gelir.
-- Nextion **NX4832T035** (Basic 3.5"). Başka modellerde çalışmaz.
+- Nextion 3.5" ekran. Modelinize uygun dosyayı seçin:
+
+  | Ekran modeli (arka etikette) | Dosya |
+  |---|---|
+  | **NX4832T035**_011R / _011C (Basic) | `tft/TA2BI.tft` |
+  | **NX4832K035**_011R / _011C (Enhanced) | `tft/TA2BI_K035.tft` |
+
+  Yanlış dosyayı yüklerseniz ekran `Model does not match` hatası verir ve hiçbir şey değişmez. Bu durumda doğru dosyayla tekrar deneyin. Discovery (F) ve Intelligent (P) serileri desteklenmez.
 - FAT32 biçimli bir microSD kart (32 GB veya daha küçük önerilir).
 
 ### 2. Ekrana yükleme (SD kart ile)
 1. SD kartı **FAT32** olarak biçimlendirin.
-2. `tft/TA2BI.tft` dosyasını kartın **kök dizinine** kopyalayın. Kartta başka `.tft` dosyası olmasın.
+2. Modelinize uygun `.tft` dosyasını kartın **kök dizinine** kopyalayın. Kartta başka `.tft` dosyası olmasın.
 3. Ekranın elektriğini kesin ve kartı ekranın arkasındaki yuvaya takın.
 4. Elektriği verin. Ekranda yükleme yüzdesi görünür ve sonunda `Update Successed!` yazar (yaklaşık 1 dakika).
 5. Elektriği kesin, **kartı çıkarın** ve yeniden açın.
@@ -132,9 +141,9 @@ Ekran tasarımı **CC BY-NC-ND 4.0** ile lisanslanmıştır: kullanabilir ve old
 
 <a name="english"></a>
 ## English
-Dark theme for **Nextion NX4832T035 (3.5" Basic, 480×320)** on Pi-Star / MMDVM hotspots (DMR, YSF, YSF2DMR), by **TA2BI – Murat ÖZ**.
+Dark theme for **Nextion 3.5" 480×320 – Basic NX4832T035 (`tft/TA2BI.tft`) and Enhanced NX4832K035 (`tft/TA2BI_K035.tft`)** on Pi-Star / MMDVM hotspots (DMR, YSF, YSF2DMR), by **TA2BI – Murat ÖZ**.
 
-- **Flash:** copy `tft/TA2BI.tft` to the root of a FAT32 microSD card (it must be the only `.tft` on the card), insert it, power on, wait for `Update Successed!`, then remove the card and power-cycle.
+- **Flash:** copy the `.tft` matching your model to the root of a FAT32 microSD card (it must be the only `.tft` on the card), insert it, power on, wait for `Update Successed!`, then remove the card and power-cycle.
 - **Pi-Star:** Display Type `Nextion`, Layout `ON7LDS L2`, Port `modem` (or `/dev/ttyUSB0` with a USB-TTL adapter). If the display is on the modem port, enable `[Transparent Data]` (40094/40095, SendFrameType=1).
 - **Optional:** `pistar/kur2.sh` shows the active YSF2DMR talkgroup name on the display. `pistar/kur.sh` adds a phone page at `/admin/tg.php` for changing the YSF2DMR talkgroup. It uses a sudoers rule limited to one script; review it before installing.
 - **USB-TTL wiring:** 5V→5V, GND→GND, Nextion TX→RXD, Nextion RX→TXD. See [docs/usb-ttl.md](docs/usb-ttl.md). Touch buttons usually only work this way, because modem-port passthrough drops display→host data.
