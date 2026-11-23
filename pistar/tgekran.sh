@@ -54,25 +54,25 @@ operator_gonder() {  # $1 = cagri isareti (ham)
   gonder "MMDVM.opulke.txt=\"${ulke}\""
 }
 
-tg_oku() {  # /etc/ysf2dmr'den StartupDstId (harici komut calistirmadan)
-  local l
+tg_oku() {  # /etc/ysf2dmr'den StartupDstId -> $TG (alt kabuk acmadan)
+  local l; TG=""
   while IFS= read -r l; do
-    case "$l" in StartupDstId=*) l=${l#StartupDstId=}; echo "${l//[^0-9]/}"; return ;; esac
+    case "$l" in StartupDstId=*) l=${l#StartupDstId=}; TG=${l//[^0-9]/}; return ;; esac
   done < "$CONF"
 }
 
-bugun_log() { TZ=UTC printf -v BUGUN '%(%Y-%m-%d)T' -1; echo "$LOGDIR/MMDVM-$BUGUN.log"; }
+bugun_log() { TZ=UTC printf -v BUGUN '%(%Y-%m-%d)T' -1; BUGUNLOG="$LOGDIR/MMDVM-$BUGUN.log"; }
 
 TPID=""
 log_ac() {  # gunun MMDVM kaydini 'tail -F' ile fd 3'e bagla
   [ -n "$TPID" ] && kill "$TPID" 2>/dev/null
-  LOG=$(bugun_log)
+  bugun_log; LOG=$BUGUNLOG
   exec 3< <(exec tail -F -n0 "$LOG" 2>/dev/null)
   TPID=$!
 }
 trap '[ -n "$TPID" ] && kill $TPID 2>/dev/null' EXIT
 
-ESKI=""; SONTG=0; SONCALL=""
+ESKI=""; SONTG=0; SONCALL=""; ESKITG="-"; METIN=""
 log_ac
 while true; do
   # 2 sn boyunca yeni kayit satiri bekle (islemci harcamadan)
@@ -88,14 +88,16 @@ while true; do
   printf -v SIMDI '%(%s)T' -1
   if [ $((SIMDI - SONTG)) -ge 2 ]; then
     SONTG=$SIMDI
-    TG=$(tg_oku)
-    METIN="TG $TG $(ad_bul "$TG")"; METIN="${METIN% }"
+    tg_oku
+    if [ "$TG" != "$ESKITG" ]; then   # ad yalnizca TG degisince aranir
+      METIN="TG $TG $(ad_bul "$TG")"; METIN="${METIN% }"; ESKITG=$TG
+    fi
     if [ "$METIN" != "$ESKI" ] || [ $((SIMDI - ${SONGONDER:-0})) -ge 10 ]; then
       gonder "MMDVM.tgad.txt=\"${METIN}\""
       gonder "MMDVM.tgno.txt=\"${TG}\""
       ESKI="$METIN"; SONGONDER=$SIMDI
     fi
     # gun degisti mi (kayit dosyasi yeni ada gecer)
-    [ "$(bugun_log)" != "$LOG" ] && log_ac
+    bugun_log; [ "$BUGUNLOG" != "$LOG" ] && log_ac
   fi
 done
