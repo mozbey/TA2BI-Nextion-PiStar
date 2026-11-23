@@ -1,0 +1,12 @@
+[Unit]
+Description=TA2BI aktif TG adini Nextion ekrana yazar
+After=mmdvmhost.service nextiondriver.service
+
+[Service]
+ExecStart=/opt/ta2bi/tgekran.sh
+Restart=always
+RestartSec=5
+User=pi-star
+
+[Install]
+WantedBy=multi-user.target

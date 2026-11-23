@@ -1,0 +1,22 @@
+TA2BI Nextion – Pi-Star Koyu Tema
+Copyright (c) 2026 Murat ÖZ (TA2BI). Tüm hakları saklıdır, aşağıdaki lisans kapsamındakiler hariç.
+
+Bu depodaki ekran tasarımı (tft/, tasarim/, docs/ içindeki dosyalar ve görseller)
+Creative Commons Atıf-GayriTicari-Türetilemez 4.0 Uluslararası lisansı
+(CC BY-NC-ND 4.0) ile lisanslanmıştır:
+https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.tr
+
+Özetle:
+  - Kullanabilir ve olduğu gibi paylaşabilirsiniz.
+  - Atıf (BY): "TA2BI – Murat ÖZ" adı ve bu depoya bağlantı korunmalıdır.
+  - GayriTicari (NC): Ticari amaçla kullanılamaz, satılamaz.
+  - Türetilemez (ND): Değiştirilmiş hali dağıtılamaz.
+
+İstisna: pistar/ klasöründeki betikler (tg.php, tgset.sh, tgekran.sh,
+tgekran.service, kur.sh, kur2.sh) MIT lisansıyla yayınlanmıştır; bkz. pistar/LICENSE.
+
+-----------------------------------------------------------------------------
+This display design (tft/, tasarim/, docs/) is licensed under Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0):
+https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+The scripts in pistar/ are MIT licensed (see pistar/LICENSE).

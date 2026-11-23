@@ -1,0 +1,754 @@
+// --- bayrak secimi (t17 = ulke) ---
+pbay.pic=3
+if(t17.txt=="United States")
+{
+  pbay.pic=4
+}
+if(t17.txt=="United Kingdom")
+{
+  pbay.pic=5
+}
+if(t17.txt=="Germany")
+{
+  pbay.pic=6
+}
+if(t17.txt=="China")
+{
+  pbay.pic=7
+}
+if(t17.txt=="Italy")
+{
+  pbay.pic=8
+}
+if(t17.txt=="Spain")
+{
+  pbay.pic=9
+}
+if(t17.txt=="Turkiye")
+{
+  pbay.pic=10
+}
+if(t17.txt=="Brazil")
+{
+  pbay.pic=11
+}
+if(t17.txt=="Canada")
+{
+  pbay.pic=12
+}
+if(t17.txt=="Poland")
+{
+  pbay.pic=13
+}
+if(t17.txt=="Australia")
+{
+  pbay.pic=14
+}
+if(t17.txt=="Chile")
+{
+  pbay.pic=15
+}
+if(t17.txt=="Russia")
+{
+  pbay.pic=16
+}
+if(t17.txt=="France")
+{
+  pbay.pic=17
+}
+if(t17.txt=="Netherlands")
+{
+  pbay.pic=18
+}
+if(t17.txt=="Japan")
+{
+  pbay.pic=19
+}
+if(t17.txt=="Austria")
+{
+  pbay.pic=20
+}
+if(t17.txt=="Sweden")
+{
+  pbay.pic=21
+}
+if(t17.txt=="Argentina Republic")
+{
+  pbay.pic=22
+}
+if(t17.txt=="Korea Republic of")
+{
+  pbay.pic=23
+}
+if(t17.txt=="Greece")
+{
+  pbay.pic=24
+}
+if(t17.txt=="Thailand")
+{
+  pbay.pic=25
+}
+if(t17.txt=="Switzerland")
+{
+  pbay.pic=26
+}
+if(t17.txt=="Philippines")
+{
+  pbay.pic=27
+}
+if(t17.txt=="Indonesia")
+{
+  pbay.pic=28
+}
+if(t17.txt=="Belgium")
+{
+  pbay.pic=29
+}
+if(t17.txt=="Denmark")
+{
+  pbay.pic=30
+}
+if(t17.txt=="Portugal")
+{
+  pbay.pic=31
+}
+if(t17.txt=="Finland")
+{
+  pbay.pic=32
+}
+if(t17.txt=="Norway")
+{
+  pbay.pic=33
+}
+if(t17.txt=="New Zealand")
+{
+  pbay.pic=34
+}
+if(t17.txt=="India")
+{
+  pbay.pic=35
+}
+if(t17.txt=="Romania")
+{
+  pbay.pic=36
+}
+if(t17.txt=="Malaysia")
+{
+  pbay.pic=37
+}
+if(t17.txt=="Slovenia")
+{
+  pbay.pic=38
+}
+if(t17.txt=="Czech Republic")
+{
+  pbay.pic=39
+}
+if(t17.txt=="Mexico")
+{
+  pbay.pic=40
+}
+if(t17.txt=="Ukraine")
+{
+  pbay.pic=41
+}
+if(t17.txt=="Hungary")
+{
+  pbay.pic=42
+}
+if(t17.txt=="Colombia")
+{
+  pbay.pic=43
+}
+if(t17.txt=="Bulgaria")
+{
+  pbay.pic=44
+}
+if(t17.txt=="Serbia")
+{
+  pbay.pic=45
+}
+if(t17.txt=="South Africa")
+{
+  pbay.pic=46
+}
+if(t17.txt=="Puerto Rico")
+{
+  pbay.pic=47
+}
+if(t17.txt=="Venezuela")
+{
+  pbay.pic=48
+}
+if(t17.txt=="Croatia")
+{
+  pbay.pic=49
+}
+if(t17.txt=="Taiwan")
+{
+  pbay.pic=50
+}
+if(t17.txt=="Bosnia and Hercegovina")
+{
+  pbay.pic=51
+}
+if(t17.txt=="Uruguay")
+{
+  pbay.pic=52
+}
+if(t17.txt=="Israel")
+{
+  pbay.pic=53
+}
+if(t17.txt=="Ireland")
+{
+  pbay.pic=54
+}
+if(t17.txt=="Panama")
+{
+  pbay.pic=55
+}
+if(t17.txt=="Hong Kong")
+{
+  pbay.pic=56
+}
+if(t17.txt=="Slovakia")
+{
+  pbay.pic=57
+}
+if(t17.txt=="Dominican Republic")
+{
+  pbay.pic=58
+}
+if(t17.txt=="Ecuador")
+{
+  pbay.pic=59
+}
+if(t17.txt=="Luxemburg")
+{
+  pbay.pic=60
+}
+if(t17.txt=="Costa Rica")
+{
+  pbay.pic=61
+}
+if(t17.txt=="Belarus")
+{
+  pbay.pic=62
+}
+if(t17.txt=="Kazakhstan")
+{
+  pbay.pic=63
+}
+if(t17.txt=="Lithuania")
+{
+  pbay.pic=64
+}
+if(t17.txt=="Bangladesh")
+{
+  pbay.pic=65
+}
+if(t17.txt=="Oman")
+{
+  pbay.pic=66
+}
+if(t17.txt=="Estonia")
+{
+  pbay.pic=67
+}
+if(t17.txt=="Peru")
+{
+  pbay.pic=68
+}
+if(t17.txt=="Macedonia")
+{
+  pbay.pic=69
+}
+if(t17.txt=="Trinidad and Tobago")
+{
+  pbay.pic=70
+}
+if(t17.txt=="Morocco")
+{
+  pbay.pic=71
+}
+if(t17.txt=="Latvia")
+{
+  pbay.pic=72
+}
+if(t17.txt=="Cuba")
+{
+  pbay.pic=73
+}
+if(t17.txt=="United Arab Emirates")
+{
+  pbay.pic=74
+}
+if(t17.txt=="Cyprus")
+{
+  pbay.pic=75
+}
+if(t17.txt=="Malta")
+{
+  pbay.pic=76
+}
+if(t17.txt=="Singapore")
+{
+  pbay.pic=77
+}
+if(t17.txt=="Reunion")
+{
+  pbay.pic=78
+}
+if(t17.txt=="Guatemala")
+{
+  pbay.pic=79
+}
+if(t17.txt=="U.S. Virgin Islands")
+{
+  pbay.pic=80
+}
+if(t17.txt=="Moldova")
+{
+  pbay.pic=81
+}
+if(t17.txt=="Montenegro")
+{
+  pbay.pic=82
+}
+if(t17.txt=="Paraguay")
+{
+  pbay.pic=83
+}
+if(t17.txt=="Kuwait")
+{
+  pbay.pic=84
+}
+if(t17.txt=="Lebanon")
+{
+  pbay.pic=85
+}
+if(t17.txt=="Sri Lanka")
+{
+  pbay.pic=86
+}
+if(t17.txt=="Pakistan")
+{
+  pbay.pic=87
+}
+if(t17.txt=="Iceland")
+{
+  pbay.pic=88
+}
+if(t17.txt=="Bahrain")
+{
+  pbay.pic=89
+}
+if(t17.txt=="Andorra")
+{
+  pbay.pic=90
+}
+if(t17.txt=="Guam")
+{
+  pbay.pic=91
+}
+if(t17.txt=="Saudi Arabia")
+{
+  pbay.pic=92
+}
+if(t17.txt=="Honduras")
+{
+  pbay.pic=93
+}
+if(t17.txt=="El Salvador")
+{
+  pbay.pic=94
+}
+if(t17.txt=="San Marino")
+{
+  pbay.pic=95
+}
+if(t17.txt=="Dominica")
+{
+  pbay.pic=96
+}
+if(t17.txt=="Haiti")
+{
+  pbay.pic=97
+}
+if(t17.txt=="Georgia")
+{
+  pbay.pic=98
+}
+if(t17.txt=="Barbados")
+{
+  pbay.pic=99
+}
+if(t17.txt=="Curacao")
+{
+  pbay.pic=100
+}
+if(t17.txt=="Corsica")
+{
+  pbay.pic=17
+}
+if(t17.txt=="Qatar")
+{
+  pbay.pic=101
+}
+if(t17.txt=="Nicaragua")
+{
+  pbay.pic=102
+}
+if(t17.txt=="Belize")
+{
+  pbay.pic=103
+}
+if(t17.txt=="Aruba")
+{
+  pbay.pic=104
+}
+if(t17.txt=="Uzbekistan")
+{
+  pbay.pic=105
+}
+if(t17.txt=="Jamaica")
+{
+  pbay.pic=106
+}
+if(t17.txt=="Martinique")
+{
+  pbay.pic=107
+}
+if(t17.txt=="Saint Lucia")
+{
+  pbay.pic=108
+}
+if(t17.txt=="Liechtenstein")
+{
+  pbay.pic=109
+}
+if(t17.txt=="Saint Vincent and the Grenadines")
+{
+  pbay.pic=110
+}
+if(t17.txt=="Guadeloupe")
+{
+  pbay.pic=111
+}
+if(t17.txt=="Bahamas")
+{
+  pbay.pic=112
+}
+if(t17.txt=="Algeria")
+{
+  pbay.pic=113
+}
+if(t17.txt=="Namibia")
+{
+  pbay.pic=114
+}
+if(t17.txt=="Saint Kitts and Nevis")
+{
+  pbay.pic=115
+}
+if(t17.txt=="New Caledonia")
+{
+  pbay.pic=116
+}
+if(t17.txt=="Gibraltar")
+{
+  pbay.pic=117
+}
+if(t17.txt=="Bonaire")
+{
+  pbay.pic=118
+}
+if(t17.txt=="Vietnam")
+{
+  pbay.pic=119
+}
+if(t17.txt=="Mauritius")
+{
+  pbay.pic=120
+}
+if(t17.txt=="Guyana")
+{
+  pbay.pic=121
+}
+if(t17.txt=="Papua New Guinea")
+{
+  pbay.pic=122
+}
+if(t17.txt=="Mozambique")
+{
+  pbay.pic=123
+}
+if(t17.txt=="Jordan")
+{
+  pbay.pic=124
+}
+if(t17.txt=="Ivory Coast")
+{
+  pbay.pic=125
+}
+if(t17.txt=="Iraq")
+{
+  pbay.pic=126
+}
+if(t17.txt=="Grenada")
+{
+  pbay.pic=127
+}
+if(t17.txt=="Cayman Islands")
+{
+  pbay.pic=128
+}
+if(t17.txt=="Bermuda")
+{
+  pbay.pic=129
+}
+if(t17.txt=="Azerbaijan")
+{
+  pbay.pic=130
+}
+if(t17.txt=="Armenia")
+{
+  pbay.pic=131
+}
+if(t17.txt=="Nepal")
+{
+  pbay.pic=132
+}
+if(t17.txt=="Kenya")
+{
+  pbay.pic=133
+}
+if(t17.txt=="Ghana")
+{
+  pbay.pic=134
+}
+if(t17.txt=="Faroe Islands")
+{
+  pbay.pic=135
+}
+if(t17.txt=="Monaco")
+{
+  pbay.pic=136
+}
+if(t17.txt=="Maldives")
+{
+  pbay.pic=137
+}
+if(t17.txt=="Kyrgyzstan")
+{
+  pbay.pic=138
+}
+if(t17.txt=="Iran")
+{
+  pbay.pic=139
+}
+if(t17.txt=="Greenland")
+{
+  pbay.pic=140
+}
+if(t17.txt=="Cape Verde")
+{
+  pbay.pic=141
+}
+if(t17.txt=="Brunei Darussalam")
+{
+  pbay.pic=142
+}
+if(t17.txt=="Micronesia")
+{
+  pbay.pic=143
+}
+if(t17.txt=="British Virgin Islands")
+{
+  pbay.pic=144
+}
+if(t17.txt=="Zimbabwe")
+{
+  pbay.pic=145
+}
+if(t17.txt=="Zambia")
+{
+  pbay.pic=146
+}
+if(t17.txt=="Nigeria")
+{
+  pbay.pic=147
+}
+if(t17.txt=="Mongolia")
+{
+  pbay.pic=148
+}
+if(t17.txt=="Madagascar")
+{
+  pbay.pic=149
+}
+if(t17.txt=="Macao")
+{
+  pbay.pic=150
+}
+if(t17.txt=="French Guiana")
+{
+  pbay.pic=151
+}
+if(t17.txt=="Falkland Islands")
+{
+  pbay.pic=152
+}
+if(t17.txt=="Egypt")
+{
+  pbay.pic=153
+}
+if(t17.txt=="Bolivia")
+{
+  pbay.pic=154
+}
+if(t17.txt=="Anguilla")
+{
+  pbay.pic=155
+}
+if(t17.txt=="Vanuatu")
+{
+  pbay.pic=156
+}
+if(t17.txt=="Tanzania")
+{
+  pbay.pic=157
+}
+if(t17.txt=="Swasiland")
+{
+  pbay.pic=158
+}
+if(t17.txt=="Suriname")
+{
+  pbay.pic=159
+}
+if(t17.txt=="Palau")
+{
+  pbay.pic=160
+}
+if(t17.txt=="Montserrat")
+{
+  pbay.pic=161
+}
+if(t17.txt=="Liberia")
+{
+  pbay.pic=162
+}
+if(t17.txt=="Lesotho")
+{
+  pbay.pic=163
+}
+if(t17.txt=="Laos")
+{
+  pbay.pic=164
+}
+if(t17.txt=="Kosovo")
+{
+  pbay.pic=165
+}
+if(t17.txt=="Chad")
+{
+  pbay.pic=166
+}
+if(t17.txt=="Central African Republic")
+{
+  pbay.pic=167
+}
+if(t17.txt=="Cameroon")
+{
+  pbay.pic=168
+}
+if(t17.txt=="Burkina Faso")
+{
+  pbay.pic=169
+}
+if(t17.txt=="Antigua and Barbuda")
+{
+  pbay.pic=170
+}
+if(t17.txt=="Albania")
+{
+  pbay.pic=171
+}
+if(t17.txt=="Aaland Islands")
+{
+  pbay.pic=172
+}
+if(t17.txt=="Yemen")
+{
+  pbay.pic=173
+}
+if(t17.txt=="Tonga")
+{
+  pbay.pic=174
+}
+if(t17.txt=="Togo")
+{
+  pbay.pic=175
+}
+if(t17.txt=="Sudan")
+{
+  pbay.pic=176
+}
+if(t17.txt=="Seychelles")
+{
+  pbay.pic=177
+}
+if(t17.txt=="Senegal")
+{
+  pbay.pic=178
+}
+if(t17.txt=="Samoa")
+{
+  pbay.pic=179
+}
+if(t17.txt=="Mauretania")
+{
+  pbay.pic=180
+}
+if(t17.txt=="Malawi")
+{
+  pbay.pic=181
+}
+if(t17.txt=="Kiribati")
+{
+  pbay.pic=182
+}
+if(t17.txt=="Guinea")
+{
+  pbay.pic=183
+}
+if(t17.txt=="Equatorial Guinea")
+{
+  pbay.pic=184
+}
+if(t17.txt=="Djibouti")
+{
+  pbay.pic=185
+}
+if(t17.txt=="Cook Islands")
+{
+  pbay.pic=186
+}
+if(t17.txt=="Botswana")
+{
+  pbay.pic=187
+}
+if(t17.txt=="Ascension Island")
+{
+  pbay.pic=188
+}
+if(t17.txt=="American Samoa")
+{
+  pbay.pic=189
+}
+if(t17.txt=="Aland Islands")
+{
+  pbay.pic=172
+}

@@ -1,0 +1,42 @@
+﻿sayfa;ad;x;y;w;h;font_id;font_px;pco_rgb565;hiza;aciklama
+MMDVM;t2;230;10;240;28;1;24;61343;sag;Tarih/saat (MMDVMHost)
+MMDVM;t1;20;58;230;24;1;24;18125;sol;Durum
+MMDVM;t0;254;60;210;20;0;16;36054;sag;Cagri/ID
+MMDVM;t32;16;116;176;34;2;32;61343;sol;TX frekans (NextionDriver)
+MMDVM;t30;252;116;176;34;2;32;61343;sol;RX frekans (NextionDriver)
+MMDVM;t20;20;180;200;36;2;32;61343;sol;CPU sicaklik
+MMDVM;j0;21;223;202;7;;;18125;-;Ilerleme cubugu (yuk %) - bco=PANEL pco=GREEN
+MMDVM;t22;20;250;96;20;0;16;61343;sol;Sistem yuku
+MMDVM;t21;128;250;100;20;0;16;61343;sol;CPU frekans
+MMDVM;t3;256;198;140;22;1;24;61343;sol;IP adresi
+MMDVM;t23;402;198;62;22;1;24;61343;sol;Bos disk %
+MMDVM;msg;256;234;208;34;1;24;64896;sol;Master adi (komut sonucu)
+MMDVM;t31;10;288;300;26;1;24;36054;sol;Konum (MMDVM.ini)
+MMDVM;cpuload;;;;;;;;-;Variable (Number) - NextionDriver yazar
+DMR;t13;20;64;280;50;3;48;61343;sol;Cagri isareti (NextionDriver)
+DMR;t14;20;116;280;34;2;32;1631;sol;Isim
+DMR;t15;20;152;280;24;1;24;36054;sol;Sehir
+DMR;t17;20;176;280;24;1;24;36054;sol;Ulke
+DMR;t2;324;172;140;24;0;16;36054;sol;Ham kaynak (MMDVMHost)
+DMR;t3;324;66;140;36;2;32;64896;sol;Hedef TG
+DMR;t8;324;106;140;60;1;24;61343;sol;TG adi (NextionDriver), ism=1 cok satir
+DMR;t5;18;228;130;24;1;24;61343;sol;RSSI slot 2
+DMR;t7;174;228;130;24;1;24;61343;sol;BER slot 2
+DMR;tsure;330;228;130;24;1;24;61343;sol;Sure (ekran kodu sayar)
+DMR;tonc;80;266;384;24;1;24;61343;sol;Onceki konusan (ekran kodu)
+DMR;t0;44;296;190;22;0;16;36054;sol;Slot 1 kaynak
+DMR;t1;240;296;110;22;0;16;36054;sol;Slot 1 hedef
+DMR;t4;356;296;56;22;0;16;36054;sag;Slot 1 RSSI
+DMR;t6;416;296;56;22;0;16;36054;sag;Slot 1 BER
+DMR;t9;0;0;1;1;0;16;2147;-;Talker alias slot2 - vis 0
+DMR;t16;0;0;1;1;0;16;2147;-;Eyalet - vis 0
+DMR;tm0;;;;;;;;-;Timer 1000 ms - sure/onceki kodu
+DMR;pbay;424;3;48;32;;;;-;Picture - ulke bayragi (pic 3 = bos)
+YSF;t0;20;80;280;50;3;48;61343;sol;Kaynak (tip + cagri)
+YSF;t2;20;150;280;34;1;24;1631;sol;Gelis yeri (at/via)
+YSF;t1;324;76;140;36;2;32;64896;sol;Hedef / DG-ID
+YSF;t3;18;228;130;24;1;24;61343;sol;RSSI
+YSF;t4;174;228;130;24;1;24;61343;sol;BER
+YSF;tsure;330;228;130;24;1;24;61343;sol;Sure (ekran kodu sayar)
+YSF;tonc;80;266;384;24;1;24;61343;sol;Onceki konusan (ekran kodu)
+YSF;tm0;;;;;;;;-;Timer 1000 ms - sure/onceki kodu
