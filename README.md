@@ -17,8 +17,9 @@ Tasarım: **TA2BI – Murat ÖZ** · [English summary below](#english)
 ## Özellikler
 - Koyu tema, büyük ve okunaklı alanlar, Türkçe etiketler.
 - **Ana ekran:** saat, durum, TX/RX frekansı, CPU sıcaklığı/yükü/frekansı, IP, boş disk, bağlı master.
+- **Büyük çağrı işareti ve iki parçalı TG:** ülke kodu küçük, devamı büyük yazılır. Örneğin `TG 286` küçük, **81** büyük.
 - **DMR:** konuşanın çağrı işareti, adı, şehri ve ülkesi; **ülke bayrağı** sağ üstte (186 ülke); TG adı, slot, RSSI, BER ve süre.
-- **YSF:** konuşan, hedef, RSSI, BER ve ses çubuğu. Çubuk PTT bırakılınca hemen durur.
+- **YSF:** konuşanın çağrı işareti, **adı, şehri/ülkesi ve bayrağı**, RSSI, BER ve ses çubuğu. Çubuk PTT bırakılınca hemen durur. İsim bilgisi Pi servisinden gelir, bkz. adım 4.
 - **Ekranda aktif TG adı** (YSF2DMR): isteğe bağlı küçük bir Pi servisiyle gelir.
 - **Telefondan TG değiştirme sayfası** (YSF2DMR): isteğe bağlı.
 - Açılışta 2 saniyelik imza ekranı.
@@ -80,8 +81,12 @@ SendFrameType=1
 
 > **Pi-Star tuzağı:** Configuration sayfası uzun süre açık kaldıysa, **Apply'dan önce sayfayı yenileyin (F5)**. Yenilemezseniz eski değerler, örneğin YSF2DMR TG'si, geri yazılır.
 
-### 4. İsteğe bağlı: ekranda aktif TG adı (YSF2DMR)
-YSF ile BrandMeister'a YSF2DMR üzerinden bağlananlar için. Bu servis, aktif TG'yi (örneğin `TG 286 Turkiye`) ekrana yazar. TG değişince ekran 2 saniye içinde güncellenir. Ekran modem kartına bağlı olsa da çalışır.
+### 4. Önerilen: TG ve operatör bilgisi servisi (YSF / YSF2DMR)
+Bu küçük Pi servisi ekrana iki tür bilgi gönderir. Ekran modem kartına bağlı olsa da çalışır.
+- **Aktif TG:** numarası ve adı, örneğin `TG 28681 Turkiye Fusion`. TG değişince ekran 2 saniye içinde güncellenir.
+- **YSF'de konuşanın bilgileri:** adı, şehri, ülkesi ve bayrağı. Bilgiler Pi-Star'ın kullanıcı veritabanından (`nextionUsers.csv`) alınır ve yaklaşık 0,5 saniyede ekrana gelir.
+
+Servis kurulmazsa YSF sayfasında yalnızca çağrı işareti görünür.
 
 Pi-Star'a SSH ile bağlanın (`ssh pi-star@<hotspot-ip>`) ve şunları çalıştırın:
 ```bash
@@ -146,7 +151,7 @@ Dark theme for **Nextion 3.5" 480×320 – Basic NX4832T035 (`tft/TA2BI.tft`) an
 
 - **Flash:** copy the `.tft` matching your model to the root of a FAT32 microSD card (it must be the only `.tft` on the card), insert it, power on, wait for `Update Successed!`, then remove the card and power-cycle.
 - **Pi-Star:** Display Type `Nextion`, Layout `ON7LDS L2`, Port `modem` (or `/dev/ttyUSB0` with a USB-TTL adapter). If the display is on the modem port, enable `[Transparent Data]` (40094/40095, SendFrameType=1).
-- **Optional:** `pistar/kur2.sh` shows the active YSF2DMR talkgroup name on the display. `pistar/kur.sh` adds a phone page at `/admin/tg.php` for changing the YSF2DMR talkgroup. It uses a sudoers rule limited to one script; review it before installing.
+- **Recommended:** `pistar/kur2.sh` installs a small service that sends the active YSF2DMR talkgroup, and the YSF caller's name, city and country (from `nextionUsers.csv`), to the display. `pistar/kur.sh` adds a phone page at `/admin/tg.php` for changing the YSF2DMR talkgroup. It uses a sudoers rule limited to one script; review it before installing.
 - **USB-TTL wiring:** 5V→5V, GND→GND, Nextion TX→RXD, Nextion RX→TXD. See [docs/usb-ttl.md](docs/usb-ttl.md). Touch buttons usually only work this way, because modem-port passthrough drops display→host data.
 - On-screen brightness: tap the **TA2BI** header on the main page; the setting is saved on the display and overrides Pi-Star's dim commands.
 - Credits: ON7LDS NextionDriver, G4KLX MMDVMHost, Pi-Star. Flags from flagcdn.com.
