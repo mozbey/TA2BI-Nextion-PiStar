@@ -55,7 +55,7 @@ tanimlar() {
   gonder ":$ADRES:PARM.T,Load,TX,WiFi,Disk,LowV,MMDVM,YSF,Y2D,Nxt,USB,TG,x"
   gonder ":$ADRES:UNIT.C,x,n,dBm,%,v,on,on,on,on,v,on,v"
   gonder ":$ADRES:EQNS.0,1,0,0,0.02,0,0,1,0,0,-1,0,0,1,0"
-  gonder ":$ADRES:BITS.11111111,TA2BI Hotspot Nextion"
+  gonder ":$ADRES:BITS.11111111,TA2BI Hotspot&Nextion"
 }
 
 yayin_sayisi() {  # bugunku kayitta biten YSF yayin sayisi
