@@ -11,8 +11,10 @@ Tasarım: **TA2BI – Murat ÖZ** · [English summary below](#english)
 | ![Açılış](docs/ekran/acilis.png) | ![MMDVM](docs/ekran/mmdvm.png) |
 | **DMR** | **YSF** |
 | ![DMR](docs/ekran/dmr.png) | ![YSF](docs/ekran/ysf.png) |
+| **TG seçme** (düğmeye basınca "Baglandi") | **Son duyulanlar** |
+| ![TG seçme](docs/ekran/tg-baglandi.png) | ![Son duyulanlar](docs/ekran/son-duyulan.png) |
 
-> Görseller tasarım önizlemesidir; örnek değerler içerir.
+> Görseller tasarım önizlemesidir; örnek değerler içerir. TG seçme ve Son duyulanlar görselleri `tasarim/render_tg.py` ile HMI'daki gerçek konum, renk ve yazı tipinden çizilmiştir (ekran fotoğrafı değildir).
 
 ## Özellikler
 - Koyu tema, büyük ve okunaklı alanlar, Türkçe etiketler.
@@ -21,9 +23,22 @@ Tasarım: **TA2BI – Murat ÖZ** · [English summary below](#english)
 - **DMR:** konuşanın çağrı işareti, adı, şehri ve ülkesi; **ülke bayrağı** sağ üstte (186 ülke); TG adı, slot, RSSI, BER ve süre.
 - **YSF:** konuşanın çağrı işareti, **adı, şehri/ülkesi ve bayrağı**, RSSI, BER ve ses çubuğu. Çubuk PTT bırakılınca hemen durur. İsim bilgisi Pi servisinden gelir, bkz. adım 4.
 - **Ekranda aktif TG adı** (YSF2DMR): isteğe bağlı küçük bir Pi servisiyle gelir.
-- **Telefondan TG değiştirme sayfası** (YSF2DMR): isteğe bağlı.
+- **Telefondan veya bilgisayardan TG değiştirme sayfası** (YSF2DMR): isteğe bağlı, `http://<hotspot>/admin/tg.php`.
+- **Ekrandan TG değiştirme (dokunmatik):** ana ekranda **tarih alanına** dokunun, TG sayfasında bir TG'ye basın; ekranda "Baglandi TG ..." yazar. Ekran → Pi yönü gerektirdiği için **USB-TTL** bağlantısı ve `pistar/usb-kur.sh` gerekir.
+- **Dinlenen TG'nin gösterilmesi:** aktif TG numarası ve adı (`TG 28681 Turkiye Fusion`) ekrana yazılır, TG değişince 2 saniyede güncellenir ve APRS durum satırı olarak da yayınlanır.
+- **Son duyulanlar listesi:** son 8 istasyon, bayrak ve süreyle.
+- **APRS telemetri:** istasyonunuzun aprs.fi sayfasında CPU sıcaklığı, yük, YSF yayın sayısı, Wi-Fi sinyali, boş disk ve servis durumları (isteğe bağlı, `pistar/kur-aprs.sh`).
 - Açılışta 2 saniyelik imza ekranı.
 - **Ekrandan parlaklık ayarı:** ana ekranda üstteki **TA2BI** başlığına dokunun, açılan kaydırıcıyla parlaklığı %10–100 arasında ayarlayın. Değer ekranda kalıcı olarak saklanır ve Pi-Star'ın gönderdiği parlaklık komutları bu değeri ezmez. Panel 6 saniye dokunulmazsa kendiliğinden kapanır.
+
+## Son güncellemeler (25 Kasım 2026)
+- **USB-TTL ile iki yönlü bağlantı:** ekran Pi'ye USB-TTL dönüştürücüyle bağlanır, ekrandaki **TG düğmeleri çalışır**. Tek komutla kurulum: `pistar/usb-kur.sh` (NextionDriver'ın uzun komutları atan ve çöken iki hatasını yamalar).
+- **Dinlenen TG ve operatör bilgisi USB-TTL'de de çalışır:** `tgekran` servisi bağlantı türünü otomatik anlar. YSF sayfasında çağrı işareti, isim, şehir ve bayrak yayın bitince yaklaşık 20 saniye ekranda kalır. Ekran portu 9600 baud'dan kayarsa servis geri alır.
+- **APRS telemetri ve TG durumu:** `pistar/kur-aprs.sh`. aprs.fi'de `https://aprs.fi/telemetry/a/<çağrı>-Y` sayfasında CPU sıcaklığı, yük, yayın sayısı, Wi-Fi, disk ve servis bitleri; durum satırında `TG 28681 Turkiye Fusion`.
+- **APRS tocall:** `pistar/tocall.sh AP2BIG` ile YSFGateway'in iki paket türündeki hedef kodu kendi kodunuzla değiştirilir (`--geri` ile eski hâli).
+- **Güncelleme sonrası onarım:** `pistar/kur-yama.sh`. Pi-Star "Update" ya da "Apply" yamaları ve port ayarlarını bozarsa 10 dakika içinde geri yüklenir.
+- **Wi-Fi bekçisi:** `pistar/kur-wifi.sh`. USB Wi-Fi dongle koparsa kademeli olarak (yeniden bağlan, arayüzü aç/kapat, USB sıfırla) toparlar.
+- Çalışan düzen, bulunan sorunlar ve çözümleri: [docs/KURULUM-KAYDI.md](docs/KURULUM-KAYDI.md), USB-TTL rehberi: [docs/usb-ttl.md](docs/usb-ttl.md).
 
 ## Klasörler
 | Klasör | İçerik |
@@ -152,6 +167,7 @@ Dark theme for **Nextion 3.5" 480×320 – Basic NX4832T035 (`tft/TA2BI.tft`) an
 - **Flash:** copy the `.tft` matching your model to the root of a FAT32 microSD card (it must be the only `.tft` on the card), insert it, power on, wait for `Update Successed!`, then remove the card and power-cycle.
 - **Pi-Star:** Display Type `Nextion`, Layout `ON7LDS L2`, Port `modem`. With a USB-TTL adapter keep Port `/dev/ttyNextionDriver` and run `sudo bash pistar/usb-kur.sh` (patched NextionDriver build, `[NextionDriver] Port=/dev/ttyUSB0`, `tgekran` service). Do not pick `/dev/ttyUSB0` in the dashboard. If the display is on the modem port, enable `[Transparent Data]` (40094/40095, SendFrameType=1).
 - **Recommended:** `pistar/kur2.sh` installs a small service that sends the active YSF2DMR talkgroup, and the YSF caller's name, city and country (from `nextionUsers.csv`), to the display. `pistar/kur.sh` adds a phone page at `/admin/tg.php` for changing the YSF2DMR talkgroup. It uses a sudoers rule limited to one script; review it before installing.
+- **USB-TTL (new):** `pistar/usb-kur.sh` builds a patched NextionDriver so the on-screen TG buttons work; `tgekran` shows the active talkgroup and the YSF caller's name/flag over USB-TTL as well. **APRS:** `pistar/kur-aprs.sh` sends telemetry (CPU temp, load, YSF TX count, Wi-Fi, disk, service bits) and a `TG ...` status line to aprs.fi. Other helpers: `tocall.sh` (own APRS tocall), `kur-yama.sh` (re-applies patches after a Pi-Star update/Apply), `kur-wifi.sh` (Wi-Fi watchdog). See [docs/KURULUM-KAYDI.md](docs/KURULUM-KAYDI.md).
 - **USB-TTL wiring:** 5V→5V, GND→GND, Nextion TX→RXD, Nextion RX→TXD. See [docs/usb-ttl.md](docs/usb-ttl.md). Touch buttons usually only work this way, because modem-port passthrough drops display→host data.
 - On-screen brightness: tap the **TA2BI** header on the main page; the setting is saved on the display and overrides Pi-Star's dim commands.
 - Credits: ON7LDS NextionDriver, G4KLX MMDVMHost, Pi-Star. Flags from flagcdn.com.
