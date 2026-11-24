@@ -6,7 +6,7 @@ After=mmdvmhost.service nextiondriver.service
 ExecStart=/opt/ta2bi/tgekran.sh
 Restart=always
 RestartSec=5
-User=pi-star
+User=root
 
 [Install]
 WantedBy=multi-user.target

@@ -65,7 +65,7 @@ Tasarım: **TA2BI – Murat ÖZ** · [English summary below](#english)
 | Ayar | Değer |
 |---|---|
 | MMDVM Display Type | `Nextion` |
-| Port | Ekran modem kartına bağlıysa `modem`, USB-TTL ile bağlıysa `/dev/ttyUSB0` ([bkz.](#usb-ttl-ile-baglanti)) |
+| Port | Ekran modem kartına bağlıysa `modem`. USB-TTL ile bağlıysa da `/dev/ttyNextionDriver`; gerçek USB portu `pistar/usb-kur.sh` ile ayarlanır ([bkz.](#usb-ttl-ile-baglanti)) |
 | Nextion Layout | `ON7LDS L2` |
 
 Ardından **Apply Changes** düğmesine basın.
@@ -82,7 +82,7 @@ SendFrameType=1
 > **Pi-Star tuzağı:** Configuration sayfası uzun süre açık kaldıysa, **Apply'dan önce sayfayı yenileyin (F5)**. Yenilemezseniz eski değerler, örneğin YSF2DMR TG'si, geri yazılır.
 
 ### 4. Önerilen: TG ve operatör bilgisi servisi (YSF / YSF2DMR)
-Bu küçük Pi servisi ekrana iki tür bilgi gönderir. Ekran modem kartına bağlı olsa da çalışır.
+Bu küçük Pi servisi ekrana iki tür bilgi gönderir. Ekran modem kartına da, USB-TTL'e de bağlı olsa çalışır; bağlantı türünü `/etc/mmdvmhost` içindeki `[NextionDriver] Port=` değerinden kendisi anlar. **Servisi USB-TTL'e geçmeden önce kurduysanız `kur2.sh`'ı yeniden çalıştırın.**
 - **Aktif TG:** numarası ve adı, örneğin `TG 28681 Turkiye Fusion`. TG değişince ekran 2 saniye içinde güncellenir.
 - **YSF'de konuşanın bilgileri:** adı, şehri, ülkesi ve bayrağı. Bilgiler Pi-Star'ın kullanıcı veritabanından (`nextionUsers.csv`) alınır ve yaklaşık 0,5 saniyede ekrana gelir.
 
@@ -130,7 +130,7 @@ Kısaca:
 | 🔵 Mavi – TX | **RXD** |
 | 🟡 Sarı – RX | **TXD** |
 
-Ardından Pi-Star'da **Port = `/dev/ttyUSB0`** seçip Apply'a basın.
+Ardından Pi'de `sudo bash pistar/usb-kur.sh` çalıştırın (NextionDriver yaması, `[NextionDriver] Port=/dev/ttyUSB0` ayarı, `tgekran` servisi). Pi-Star panelinde Port olarak `/dev/ttyUSB0` seçmeyin. Ayrıntı: [docs/usb-ttl.md](docs/usb-ttl.md), çalışan düzen ve bulunan sorunlar: [docs/KURULUM-KAYDI.md](docs/KURULUM-KAYDI.md).
 
 ---
 
@@ -150,7 +150,7 @@ Ekran tasarımı **CC BY-NC-ND 4.0** ile lisanslanmıştır: kullanabilir ve old
 Dark theme for **Nextion 3.5" 480×320 – Basic NX4832T035 (`tft/TA2BI.tft`) and Enhanced NX4832K035 (`tft/TA2BI_K035.tft`)** on Pi-Star / MMDVM hotspots (DMR, YSF, YSF2DMR), by **TA2BI – Murat ÖZ**.
 
 - **Flash:** copy the `.tft` matching your model to the root of a FAT32 microSD card (it must be the only `.tft` on the card), insert it, power on, wait for `Update Successed!`, then remove the card and power-cycle.
-- **Pi-Star:** Display Type `Nextion`, Layout `ON7LDS L2`, Port `modem` (or `/dev/ttyUSB0` with a USB-TTL adapter). If the display is on the modem port, enable `[Transparent Data]` (40094/40095, SendFrameType=1).
+- **Pi-Star:** Display Type `Nextion`, Layout `ON7LDS L2`, Port `modem`. With a USB-TTL adapter keep Port `/dev/ttyNextionDriver` and run `sudo bash pistar/usb-kur.sh` (patched NextionDriver build, `[NextionDriver] Port=/dev/ttyUSB0`, `tgekran` service). Do not pick `/dev/ttyUSB0` in the dashboard. If the display is on the modem port, enable `[Transparent Data]` (40094/40095, SendFrameType=1).
 - **Recommended:** `pistar/kur2.sh` installs a small service that sends the active YSF2DMR talkgroup, and the YSF caller's name, city and country (from `nextionUsers.csv`), to the display. `pistar/kur.sh` adds a phone page at `/admin/tg.php` for changing the YSF2DMR talkgroup. It uses a sudoers rule limited to one script; review it before installing.
 - **USB-TTL wiring:** 5V→5V, GND→GND, Nextion TX→RXD, Nextion RX→TXD. See [docs/usb-ttl.md](docs/usb-ttl.md). Touch buttons usually only work this way, because modem-port passthrough drops display→host data.
 - On-screen brightness: tap the **TA2BI** header on the main page; the setting is saved on the display and overrides Pi-Star's dim commands.
