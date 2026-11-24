@@ -33,7 +33,7 @@ if [ -f "$YEDEK/NextionDriver" ] && ! cmp -s "$YEDEK/NextionDriver" /usr/local/b
 fi
 
 # 2) tocall
-if ! grep -aq ">$TOCALL,TCPIP" /usr/local/bin/YSFGateway 2>/dev/null && [ -x /opt/ta2bi/tocall.sh ]; then
+if ! { grep -aq ">$TOCALL,TCPIP" /usr/local/bin/YSFGateway 2>/dev/null && grep -aq ">$TOCALL,C4FM" /usr/local/bin/YSFGateway 2>/dev/null; } && [ -x /opt/ta2bi/tocall.sh ]; then
   rw
   /opt/ta2bi/tocall.sh "$TOCALL" >/dev/null 2>&1 && log "YSFGateway tocall $TOCALL olarak geri yuklendi"
 fi

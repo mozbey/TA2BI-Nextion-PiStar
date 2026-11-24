@@ -61,7 +61,7 @@ Ekran → Pi yolu: TG sayfasında düğmeye basınca syslog'da `Received command
 ## APRS görünümü (isteğe bağlı)
 - aprs.fi'deki "Jonathan, G4KLX ircDDB Gateway" yazısı ayar değil. YSFGateway paketleri sabit `APDG03` hedef koduyla gönderir, aprs.fi kodu kendi listesinde arar.
 - Satır sonundaki açıklama (`... MMDVM Voice (C4FM) 432.77500MHz +2.0000MHz, <açıklama>`) `/etc/ysfgateway` → `[APRS] Description=` alanıdır. APRS yorum sınırı nedeniyle yaklaşık 20 karakter yazın (ör. `TA2BI HOTSPOT&NEXTION`).
-- Hedef kodu değiştirmek için: `sudo bash pistar/tocall.sh AP2BIG` (6 karakter, `AP` ile başlar; geri almak için `... APDG03`). Özel ad için kodu https://github.com/aprsorg/aprs-deviceid deposuna kaydettirmek gerekir, kayıtsız kod aprs.fi'de bilinmeyen cihaz görünür. Pi-Star güncellemesi `YSFGateway`'i değiştirirse betiği yeniden çalıştırın.
+- Hedef kodu değiştirmek için: `sudo bash pistar/tocall.sh AP2BIG` (6 karakter, `AP` ile başlar; geri almak için `sudo bash pistar/tocall.sh --geri`). YSFGateway iki tür paket gönderir: `APDG03` (istasyon konumu) ve `APDPRS` (telsiz konumu, "via MMDVM"). Betik ikisini de değiştirir. Özel ad için kodu https://github.com/aprsorg/aprs-deviceid deposuna kaydettirmek gerekir, kayıtsız kod aprs.fi'de bilinmeyen cihaz görünür. Pi-Star güncellemesi `YSFGateway`'i değiştirirse betiği yeniden çalıştırın.
 
 ## APRS telemetri ve TG durumu (isteğe bağlı)
 - `sudo bash pistar/kur-aprs.sh [dakika]` kurar (`ta2bi-aprs` servisi, varsayılan 10 dakika; ayar `/etc/default/ta2bi-aprs`). Paketleri göndermeden görmek için `/opt/ta2bi/aprs-telemetri.sh --dry`.
