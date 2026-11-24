@@ -1,0 +1,6 @@
+[Unit]
+Description=TA2BI yama ve ayar kontrolu
+
+[Service]
+Type=oneshot
+ExecStart=/opt/ta2bi/yama-kontrol.sh

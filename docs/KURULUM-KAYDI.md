@@ -70,3 +70,10 @@ Ekran → Pi yolu: TG sayfasında düğmeye basınca syslog'da `Received command
 - Kanallar: a1 CPU sıcaklığı (°C), a2 yük (×50), a3 aralıkta biten YSF yayın sayısı, a4 Wi-Fi (-dBm), a5 boş disk (%); b1 düşük gerilim (1 = uyarı var), b2 mmdvmhost, b3 ysfgateway, b4 ysf2dmr, b5 nextiondriver, b6 USB-TTL, b7 tgekran.
 - TG metni telemetri kanalına sığmaz (0-255). Durum satırı olarak gider: `>TG 28681 Turkiye Fusion` (TG değişince ve her aralıkta).
 - Doğrulama: APRS-IS'e salt-okunur bağlanıp (`user N0CALL pass -1 filter b/TA2BI-Y`, port 14580) paketler görüldü.
+
+## Pi-Star güncellemesi ve "Apply" sonrası (kalıcılık)
+- `/usr/local/bin` Pi-Star'ın binary deposudur (git). `pistar-update` bu depoda `git pull` / `reset --hard` yapar. Yamalı `NextionDriver` ve `YSFGateway` bu depoda "değişmiş" görünür. Yukarıdaki depoda bu dosyalar güncellenirse yamalar silinir.
+- Panelde "Apply" `/etc/mmdvmhost` ve `/etc/ysfgateway` dosyalarını yeniden yazabilir (`[NextionDriver] Port`, APRS `Description`).
+- `sudo bash pistar/kur-yama.sh AP2BIG "TA2BI Hotspot&Nextion"` bir onarım timer'ı kurar (`ta2bi-yama.timer`, 10 dakikada bir, güncelleme çalışıyorsa bekler). Yamalı NextionDriver'ı `/opt/ta2bi/yedek/` altından geri koyar, tocall'ı, `[NextionDriver]`/`[Nextion]` portlarını ve APRS açıklamasını geri yükler, gerekirse servisleri yeniden başlatır. Ayarlar: `/etc/default/ta2bi-yama`.
+- Güncellemeden sonra değişmeyenler: `/etc/systemd/system` birimleri, `/opt/ta2bi`, `/etc/sudoers.d/ta2bi-tg`, `/var/www/dashboard/admin/tg.php` (git'e dahil olmayan dosyalar).
+- Bu mekanizma bir güncellemeyi simüle ederek denendi (NextionDriver 1.25'e, tocall APDG03'e, port `modem`'e, açıklama varsayılana çevrilip kontrol çalıştırıldı; hepsi geri yüklendi).

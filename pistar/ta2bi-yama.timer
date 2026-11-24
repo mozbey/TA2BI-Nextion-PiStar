@@ -1,0 +1,9 @@
+[Unit]
+Description=TA2BI yama ve ayar kontrolu (10 dakikada bir)
+
+[Timer]
+OnBootSec=4min
+OnUnitActiveSec=10min
+
+[Install]
+WantedBy=timers.target
