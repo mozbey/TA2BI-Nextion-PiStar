@@ -57,3 +57,8 @@ Ekran → Pi yolu: TG sayfasında düğmeye basınca syslog'da `Received command
 - NextionDriver yaması stok GPL kaynağına iki küçük `sed` değişikliğidir (bkz. `pistar/usb-kur.sh`). Kaynak: https://github.com/on7lds/NextionDriver (commit 03b9042, sürüm 1.26).
 - Pi-Star güncellemesi sonrası `NextionDriver --version` ve `[NextionDriver] Port` değerini kontrol edin. Gerekirse `usb-kur.sh`'ı yeniden çalıştırın.
 - Çökerse `sudo systemctl restart nextiondriver mmdvmhost tgekran` (sırayla, `nextiondriver` önce).
+
+## APRS görünümü (isteğe bağlı)
+- aprs.fi'deki "Jonathan, G4KLX ircDDB Gateway" yazısı ayar değil. YSFGateway paketleri sabit `APDG03` hedef koduyla gönderir, aprs.fi kodu kendi listesinde arar.
+- Satır sonundaki açıklama (`... MMDVM Voice (C4FM) 432.77500MHz +2.0000MHz, <açıklama>`) `/etc/ysfgateway` → `[APRS] Description=` alanıdır. APRS yorum sınırı nedeniyle yaklaşık 20 karakter yazın (ör. `TA2BI HOTSPOT&NEXTION`).
+- Hedef kodu değiştirmek için: `sudo bash pistar/tocall.sh AP2BIG` (6 karakter, `AP` ile başlar; geri almak için `... APDG03`). Özel ad için kodu https://github.com/aprsorg/aprs-deviceid deposuna kaydettirmek gerekir, kayıtsız kod aprs.fi'de bilinmeyen cihaz görünür. Pi-Star güncellemesi `YSFGateway`'i değiştirirse betiği yeniden çalıştırın.
