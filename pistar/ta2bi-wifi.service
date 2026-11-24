@@ -1,0 +1,12 @@
+[Unit]
+Description=TA2BI Wi-Fi bekcisi
+After=network-online.target
+
+[Service]
+ExecStart=/opt/ta2bi/wifi-bekci.sh
+Restart=always
+RestartSec=10
+User=root
+
+[Install]
+WantedBy=multi-user.target
