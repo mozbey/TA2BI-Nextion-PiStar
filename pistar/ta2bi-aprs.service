@@ -1,0 +1,12 @@
+[Unit]
+Description=TA2BI APRS telemetri ve TG durumu
+After=aprsgateway.service ysfgateway.service
+
+[Service]
+ExecStart=/opt/ta2bi/aprs-telemetri.sh
+Restart=always
+RestartSec=30
+User=root
+
+[Install]
+WantedBy=multi-user.target

@@ -62,3 +62,11 @@ Ekran → Pi yolu: TG sayfasında düğmeye basınca syslog'da `Received command
 - aprs.fi'deki "Jonathan, G4KLX ircDDB Gateway" yazısı ayar değil. YSFGateway paketleri sabit `APDG03` hedef koduyla gönderir, aprs.fi kodu kendi listesinde arar.
 - Satır sonundaki açıklama (`... MMDVM Voice (C4FM) 432.77500MHz +2.0000MHz, <açıklama>`) `/etc/ysfgateway` → `[APRS] Description=` alanıdır. APRS yorum sınırı nedeniyle yaklaşık 20 karakter yazın (ör. `TA2BI HOTSPOT&NEXTION`).
 - Hedef kodu değiştirmek için: `sudo bash pistar/tocall.sh AP2BIG` (6 karakter, `AP` ile başlar; geri almak için `... APDG03`). Özel ad için kodu https://github.com/aprsorg/aprs-deviceid deposuna kaydettirmek gerekir, kayıtsız kod aprs.fi'de bilinmeyen cihaz görünür. Pi-Star güncellemesi `YSFGateway`'i değiştirirse betiği yeniden çalıştırın.
+
+## APRS telemetri ve TG durumu (isteğe bağlı)
+- `sudo bash pistar/kur-aprs.sh [dakika]` kurar (`ta2bi-aprs` servisi, varsayılan 10 dakika; ayar `/etc/default/ta2bi-aprs`). Paketleri göndermeden görmek için `/opt/ta2bi/aprs-telemetri.sh --dry`.
+- Servis APRSGateway'in UDP girişine (127.0.0.1:8673) satır yazar; APRSGateway satırı olduğu gibi APRS-IS'e iletir. **Satır sonu (`\r\n`) gönderen eklemelidir**, yoksa APRS-IS satırı hiç işlemez ve sonraki paketlerle birleşir.
+- Kaynak istasyon `<Callsign>-<Suffix>` (YSFGateway ile aynı, örn. `TA2BI-Y`), hedef kod YSFGateway ikilisindeki tocall'dır.
+- Kanallar: a1 CPU sıcaklığı (°C), a2 yük (×50), a3 aralıkta biten YSF yayın sayısı, a4 Wi-Fi (-dBm), a5 boş disk (%); b1 düşük gerilim (1 = uyarı var), b2 mmdvmhost, b3 ysfgateway, b4 ysf2dmr, b5 nextiondriver, b6 USB-TTL, b7 tgekran.
+- TG metni telemetri kanalına sığmaz (0-255). Durum satırı olarak gider: `>TG 28681 Turkiye Fusion` (TG değişince ve her aralıkta).
+- Doğrulama: APRS-IS'e salt-okunur bağlanıp (`user N0CALL pass -1 filter b/TA2BI-Y`, port 14580) paketler görüldü.
